@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+/* app css stylesheet */
+body {
+    margin: 100px;
+    background-color: #7e94ac; 
+    color: white;
+}
+.header{
+  color: white;
+}
+
+.thumbnail { 
+  min-height: 260px; 
+  color: black;
+  background: rgba(195, 197, 186, 0.815);
+}
+.hoverwell thumbnail {
+  background-color: #0376f1;
+  cursor: pointer;
+}
+
+.hoverwell:hover {
+  background-color: #0376f1;
+  cursor: pointer;
+}
+
+.btn-primary{
+  background: rgb(13, 158, 122);
+}
+.btn-primary:hover{
+  background: rgb(172, 216, 205);
+  color: #0376f1;
+}
+
+  
+  .container {
+    padding-top: 10px;
+  }
+  
+  .pointable {
+    cursor: pointer;
+  }
+   
+  [hidden] {
+    display: none !important;
+  }
+  
+  .toast-success {
+    background-color: #51a351;
+  }
+  .toast-error {
+    background-color: #bd362f;
+  }
+  .toast-info {
+    background-color: #2f96b4;
+  }
+  .toast-warning {
+    background-color: #f89406;
+  }
