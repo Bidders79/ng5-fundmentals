@@ -1,22 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import{
-  EventService,
-  CreateEventComponent,
-  EventsListResolver,
-  EventThumbnailComponent,
-  EventRouteActivator,
-  EventDetailsComponent,
-  EventsListComponent
-} from './events/index';
-
+import { appRoutes } from './routes';
 import { EventsAppComponent } from './events-app.component';
 import { EventNavbarComponent } from './navbar/event-navbar.component';
 import { ToastrService } from './common/toastr.service';
-import { appRoutes } from './routes';
-import { Error404Component } from './errors/Error404.component';
+import { Error404Component } from './errors/Error-404.component';
+
+//barrel imports
+import { 
+  EventRouteActivator,
+  EventDetailsComponent,
+  EventThumbnailComponent,
+  EventsListComponent,
+  EventService,
+  EventsListResolver,
+  CreateEventComponent, 
+  CreateSessionComponent,
+} 
+from './events/index';
+import { AngularNotesComponent } from './angular-notes/angular-notes.component';
+import { AuthService } from './user/auth.service';
 
 
 @NgModule({
@@ -28,29 +33,35 @@ import { Error404Component } from './errors/Error404.component';
     EventDetailsComponent,
     CreateEventComponent,
     Error404Component,
+    AngularNotesComponent,
+    CreateSessionComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [
-    EventService, 
-    ToastrService, 
+    EventService,
+    ToastrService,
     EventRouteActivator,
-    {
-      provide: 'canDeactivateEventCreate',
-      useValue: checkDirtyState
-    },
-    EventsListResolver
+    EventsListResolver,
+    AuthService,
+     {
+       provide: 'canDeactivateEventCreate',
+       useValue: checkDirtyState
+     },
   ],
   bootstrap: [EventsAppComponent]
 })
-export class AppModule { 
+export class AppModule {
 }
 
-function checkDirtyState(component:CreateEventComponent){
-  if(component.isDirtyState)
-    //returns true or false
+function checkDirtyState(component: CreateEventComponent){
+  if (component.isDirtyState){
+    // returns true or false
     return window.confirm('You have not saved this event, do you really want to cancel');
+  }
   return true;
 }

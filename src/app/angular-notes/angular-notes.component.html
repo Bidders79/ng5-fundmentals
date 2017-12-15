@@ -1,0 +1,47 @@
+<h1>
+  Angular Notes
+</h1>
+  Forms: 
+  
+  <ul>
+    <li><strong>Model</strong>
+      Also known as Reactive forms and allows you to put logic in the component
+      import FormsModule (this contains ngModel and ReativeFormsModule
+      Declare a variable FormGroup and OnInit populate it with FormControls that match the html
+      Assign the formGroup to the form tag in the html and the controls to the assocated input fields
+    </li>
+    <li><strong>Template</strong> - built in html- ok for simple forms, 
+      <ul>
+        <li>Limitations ends up containing alot of complex logic</li>
+        <li>Can't unit test</li>
+        <li>Cross field validation is nore difficult</li>
+      </ul>
+    </li>
+  </ul>
+ <p>Both types of forms handle nested groups of fields. Say we have a model field with its own nested fields {event, name, date, location{address, country }}.
+   then ngModelGroup can be used to wrap the corresponding forms fields into a block to pass back to the component.
+   
+ </p>
+
+  Banana in a box, this specifies two way binding - [()]
+
+    the () specifies html to component binding direction used for responding to events
+    the [] specifies component to html binding direction used for displaying data from the component onto the page
+
+    <h1>imported from Forms Module</h1>
+    (ngModel) - one way binding - requires a name property which usually matches the model field name to be updated
+
+    Defining a local variable within html used for form creations - #loginForm="ngForm"
+
+    this works the same for both type of forms
+    on a form submit we can use (submit)="login(loginForm.value)" 
+      a better option is to use the built in ngSubmit, this has more features 
+      passing our local form (values only) variable into a method defined in the component
+      i.e not submitting the form on validation errors
+
+  
+  <h2>Providers</h2>
+
+  In modules where providers for services and varaiables are registered for DI, 
+  if they are required across multiple modules then they only need to be registerd in the first module.
+  Providers are shared, where as imports and declarations need to included per module as required.

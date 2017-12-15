@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../shared/event.service';
 import { ToastrService } from '../../common/toastr.service';
 import { Route, ActivatedRoute } from '@angular/router';
+import { IEvent } from '../index';
 
 
 @Component({
@@ -9,8 +10,8 @@ import { Route, ActivatedRoute } from '@angular/router';
   template: `
     <div class='header'>
     <h1>Upcoming Angular 5 Events</h1>
-      <hr />   
-      
+      <hr />
+
       <div class='row'>
         <div *ngFor='let event of events' class='col-md-5'>
           <app-event-thumbnail (click)='handleThumbnailClick(event.name)'
@@ -21,22 +22,22 @@ import { Route, ActivatedRoute } from '@angular/router';
   `,
 })
 export class EventsListComponent implements OnInit {
-  
-  events:any
 
-  constructor(private eventService: EventService, 
+  events: IEvent[];
+
+  constructor(private eventService: EventService,
               private toatsr: ToastrService,
-              private route:ActivatedRoute ) { 
-    
+              private route: ActivatedRoute ) {
+
   }
 
   ngOnInit() {
     //this.eventService.getEvents().subscribe(events => { this.events = events });
-    this.events = this.route.snapshot.data['events']
+    this.events = this.route.snapshot.data['events'];
   }
 
   handleThumbnailClick(eventName){
-    this.toatsr.success(eventName)
+    this.toatsr.success(eventName);
   }
 
 }

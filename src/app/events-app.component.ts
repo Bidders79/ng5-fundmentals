@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-events-app',
-  template:`
+  template: `
   <div>
     <p>
       <app-event-navbar></app-event-navbar>
