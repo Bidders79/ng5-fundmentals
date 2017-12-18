@@ -4,15 +4,15 @@
 
     <div class="title row">
       <div class="col-md-11">
-        <h2>{{event?.name}} </h2>
+        <h2>{{event?.name | uppercase}} </h2>
       </div>
     </div>
   
     <div class="row">
       <div class="col-md-6">
-        <div><strong>Date:</strong> {{event?.date}}</div>
+        <div><strong>Date:</strong> {{event?.date | date:'shortDate'}}</div>
         <div><strong>Time:</strong> {{event?.time}}</div>
-        <div><strong>Price:</strong> ${{event?.price}}</div>
+        <div><strong>Price:</strong> {{event?.price | currency:'GBP':true}}</div>
       </div>
       <div class="col-md-6">
         <address>
@@ -23,5 +23,27 @@
       </div>
     </div>
 
+    <hr>
+
+    <div class="row">
+      <div class="col-md-2">
+        <h3>Sessions</h3>
+      </div>
+      <div class="col-md-8" *ngIf="!addMode">
+        <a (click)="addSession()">Add Session</a>
+      </div>
+    </div>
+
+
+    <!-- bind this session property of this session list component 
+         to the sessions array on this event object. 
+         The event object is in the session details component
+    -->
+    <app-session-list *ngIf="!addMode" [sessions]="event?.sessions"></app-session-list>
+
+    <!--bind to to the newSession event and call the saveNewSession method-->
+    <app-create-session *ngIf="addMode" 
+      (saveNewSession)="saveNewSession($event)" (cancelAddSession)="cancelAddSession()">
+    </app-create-session>
  
 </div>

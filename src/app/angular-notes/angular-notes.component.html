@@ -45,3 +45,15 @@
   In modules where providers for services and varaiables are registered for DI, 
   if they are required across multiple modules then they only need to be registerd in the first module.
   Providers are shared, where as imports and declarations need to included per module as required.
+
+
+  <h2>Multiple Slot Content Projection</h2>
+  This can be used when different sections of content require manipulation, 
+  e.g showing and hiding body content on a user click
+  <ul>
+    <li>Create component to render the html content</li>
+    <li>Wrap the html to render in the new component selector tag</li>
+    <li>Add div attributes to the html section slots e.g "div well-title"</li>
+    <li>Add attributes seletore to the new component, 
+      ng-content select="[well-title] to output content where required</li>
+  </ul>

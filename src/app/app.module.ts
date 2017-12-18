@@ -6,6 +6,7 @@ import { appRoutes } from './routes';
 import { EventsAppComponent } from './events-app.component';
 import { EventNavbarComponent } from './navbar/event-navbar.component';
 import { ToastrService } from './common/toastr.service';
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { Error404Component } from './errors/Error-404.component';
 
 //barrel imports
@@ -18,6 +19,7 @@ import {
   EventsListResolver,
   CreateEventComponent, 
   CreateSessionComponent,
+  SessionListComponent,
 } 
 from './events/index';
 import { AngularNotesComponent } from './angular-notes/angular-notes.component';
@@ -35,6 +37,8 @@ import { AuthService } from './user/auth.service';
     Error404Component,
     AngularNotesComponent,
     CreateSessionComponent,
+    SessionListComponent,
+    CollapsibleWellComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,8 @@
         <h1>Edit Your Profile </h1>
         <hr>
         <div class="col-md-4">
-          <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm.value)" autocomplete="off" novalidate>
+          <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm.value)" 
+          autocomplete="off" novalidate>
             <!-- use ngClass to set the class on the div if the field has been touched but is not populated-->
             <div class="form-group" [ngClass]="{ 'error' : !validateFirstName() }">
               <label for="firstName">First Name:</label>
@@ -21,7 +22,7 @@
               <input formControlName="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name..." />
             </div>
       
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" (click)="">Save</button>
             <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
           </form>
         </div>
