@@ -18,7 +18,6 @@ import { Component, Input } from '@angular/core';
         }`]
 
 })
-
 export class CollapsibleWellComponent {
     visible: boolean = true;
 

@@ -20,6 +20,7 @@ import {
   CreateEventComponent, 
   CreateSessionComponent,
   SessionListComponent,
+  DurationPipe
 } 
 from './events/index';
 import { AngularNotesComponent } from './angular-notes/angular-notes.component';
@@ -39,6 +40,7 @@ import { AuthService } from './user/auth.service';
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    DurationPipe,
   ],
   imports: [
     BrowserModule,

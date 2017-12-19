@@ -57,3 +57,31 @@
     <li>Add attributes seletore to the new component, 
       ng-content select="[well-title] to output content where required</li>
   </ul>
+
+
+  <h2>Object Idenetity</h2>
+ Different objetcs, if compared they will equal false
+  "var a = object
+  "var b = object
+
+  if a new object points to 'a', when compared they will equal true as they point to the same object
+  var c = a 
+  
+
+  if the object 'a' is mutated, then 'c' still matches as it still points to 'a'
+  a.var1 = 3
+
+  if 'a' is assigned to a new object again then 'c' no longer matches
+  a = object
+
+Mutability
+
+Objects and arrays are mutable, they can change any time without changing their identity
+arrays are just objects
+
+Pipes - In angular 1 impuire pipes were used, which isn't very efficent and can casue performsnce issues
+
+In angular 2 it is recomended to do it in the component, and this is where the data is updated.
+The 
+
+
