@@ -1,7 +1,10 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, EventEmitter} from '@angular/core';
 import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser/src/dom/events/event_manager';
 import { Subject, Observable } from 'rxjs/Rx';
-import { IEvent } from '../index';
+import { IEvent, ISession } from '../index';
+
+
+
 /*
     angular works well with observables and promises
     Promise  = a single event
@@ -33,17 +36,40 @@ export class EventService{
         }, 100);
         return subject;
     }
+
     getEvent(id: number):IEvent{
       return EVENTS.find(event => event.id == id);
     }
+
   saveEvent(event){
-      event.id = 999;
-      event.session = [];
-      EVENTS.push(event);
-    }
+    event.id = 999;
+    event.session = [];
+    EVENTS.push(event);
+  }
+
   updateEvent(event){
     let index = EVENTS.findIndex(x => x.id = event.id)
     EVENTS[index] = event
+  }
+
+  searchSessions(searchTerm: string){
+    var term = searchTerm.toLocaleLowerCase();
+    var results: ISession[] = [];
+    EVENTS.forEach(event => {
+      var matchingSessions = event.sessions.filter(session => 
+        session.name.toLocaleLowerCase().indexOf(term) > -1);
+        matchingSessions = matchingSessions.map((session:any) => {
+            session.eventId = event.id;
+            return session;
+        })
+        results = results.concat(matchingSessions);
+    })
+    //tell event emitter to return it asynchronously and simultae a http request
+    var emitter =  new EventEmitter(true);
+      setTimeout(()=> {
+        emitter.emit(results);
+      },100);
+    return emitter;
   }
 
 }

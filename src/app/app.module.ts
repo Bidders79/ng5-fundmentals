@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { EventsAppComponent } from './events-app.component';
 import { EventNavbarComponent } from './navbar/event-navbar.component';
-import { ToastrService } from './common/toastr.service';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { Error404Component } from './errors/Error-404.component';
 
 //barrel imports
@@ -20,14 +18,26 @@ import {
   CreateEventComponent, 
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe
+  DurationPipe,
+  UpvoteComponent,
+  VoterService
 } 
 from './events/index';
+
+import {
+  JQ_TOKEN,
+  CollapsibleWellComponent,
+  SimpleModalComponent,
+  ModalTriggerDirective,
+} from './common/index' 
+
 import { AngularNotesComponent } from './angular-notes/angular-notes.component';
 import { AuthService } from './user/auth.service';
 
+declare let jQuery : Object;
 
 @NgModule({
+  //components and directives are declared here
   declarations: [
     EventsAppComponent,
     EventsListComponent,
@@ -41,29 +51,36 @@ import { AuthService } from './user/auth.service';
     SessionListComponent,
     CollapsibleWellComponent,
     DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective,
+    UpvoteComponent,
   ],
+  //modules
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
+  //services
   providers: [
     EventService,
-    ToastrService,
     EventRouteActivator,
     EventsListResolver,
     AuthService,
+    VoterService,
      {
        provide: 'canDeactivateEventCreate',
        useValue: checkDirtyState
      },
+     { provide: JQ_TOKEN, useValue: jQuery}
   ],
+  //plug in the starting point of the application
   bootstrap: [EventsAppComponent]
 })
 export class AppModule {
 }
-
+//this is used by the CreateEventComponent to display an alert if the user tries to leave the page without saving
 function checkDirtyState(component: CreateEventComponent){
   if (component.isDirtyState){
     // returns true or false

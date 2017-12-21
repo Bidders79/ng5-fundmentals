@@ -12,3 +12,6 @@ li > a.active{
         display:none;
     }
 }
+#simple-modal{
+    background-color: green;
+}

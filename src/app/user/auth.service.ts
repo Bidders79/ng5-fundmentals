@@ -3,7 +3,6 @@ import { IUser } from './user.model';
 import { first } from 'rxjs/operators/first';
 
 @Injectable()
-
 export class AuthService {
     currentUser: IUser
     loginUser(userName: string, password: string){

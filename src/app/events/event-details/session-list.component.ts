@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges} from '@angular/core';
 import { ISession } from '../shared/index';
+import { AuthService }from '../../user/auth.service'
+import { VoterService } from './voter.service';
 
 @Component({
   selector: 'app-session-list',
@@ -7,17 +9,15 @@ import { ISession } from '../shared/index';
 })
 export class SessionListComponent implements OnInit, OnChanges {
   
-
   @Input() sessions: ISession[];
   @Input() filterBy: string;
   @Input() sortBy: string;
   /*this will be used in the html template to render the sessions, 
   leaving the inputted sessions in tack
   */
-
   visableSessions: ISession[];
 
-  constructor() { }
+  constructor(private auth: AuthService, private voterService: VoterService) { }
 
   ngOnInit() {
   }
@@ -30,6 +30,21 @@ export class SessionListComponent implements OnInit, OnChanges {
       this.sortBy == 'name' ? 
         this.visableSessions.sort(sortByNameAsc): this.visableSessions.sort(sortByVotesDesc);
     }
+  }
+
+  toggleVote(session: ISession){
+    if(this.userHasVoted(session)){
+      this.voterService.deleteVoter(session, this.auth.currentUser.userName);
+    }else{
+      this.voterService.addVoter(session, this.auth.currentUser.userName);
+    }
+    if(this.sortBy === 'voters'){
+      this.visableSessions.sort(sortByVotesDesc);
+    }
+  }
+
+  userHasVoted(session: ISession){
+    return this.voterService.userHasVoted(session, this.auth.currentUser.userName)
   }
 
   //stateless function
