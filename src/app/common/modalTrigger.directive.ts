@@ -22,7 +22,7 @@ export class ModalTriggerDirective{
     ngOnInit(){
         //add an event listner to the html element (button) and call the modal on this raised event
         this.htmlEl.addEventListener('click', e => {
-            alert('raised yo');
+            alert('this should show a modlal container');
             this.$('#modalconatiner').modal('show');
         });
         

@@ -15,7 +15,7 @@ import { IEvent } from '../index';
             <span *ngSwitchDefault>(Normal Start)</span>
           </div>
           <div *ngIf='event?.location'>
-            Price: {{event.price | currency:'GBP':true }}
+            Price: {{ event.price | currency:'GBP':true }}
           </div>
           <div>
             <span>Location: {{event.location.address}}</span>

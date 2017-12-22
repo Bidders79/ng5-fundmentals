@@ -55,6 +55,7 @@ export class EventService{
   searchSessions(searchTerm: string){
     var term = searchTerm.toLocaleLowerCase();
     var results: ISession[] = [];
+    //match services
     EVENTS.forEach(event => {
       var matchingSessions = event.sessions.filter(session => 
         session.name.toLocaleLowerCase().indexOf(term) > -1);
@@ -64,7 +65,7 @@ export class EventService{
         })
         results = results.concat(matchingSessions);
     })
-    //tell event emitter to return it asynchronously and simultae a http request
+    //tell event emitter to return it asynchronously and simulate a http request
     var emitter =  new EventEmitter(true);
       setTimeout(()=> {
         emitter.emit(results);

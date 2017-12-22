@@ -35,10 +35,13 @@ export class SessionListComponent implements OnInit, OnChanges {
   toggleVote(session: ISession){
     if(this.userHasVoted(session)){
       this.voterService.deleteVoter(session, this.auth.currentUser.userName);
-    }else{
+    }
+    else
+    {
       this.voterService.addVoter(session, this.auth.currentUser.userName);
     }
-    if(this.sortBy === 'voters'){
+    if(this.sortBy === 'voters')
+    {
       this.visableSessions.sort(sortByVotesDesc);
     }
   }
