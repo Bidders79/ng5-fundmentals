@@ -2,8 +2,15 @@
   Angular Notes
 </h1>
 
- - Reusing Components with Content Projection
 
+<p>Inline templates - intellisense 
+    <br/>  
+npm install -g angular2-inline
+</p>
+
+<br/>
+ - Reusing Components with Content Projection
+ <br/>
  Content Projection
   Session-list.component.ts
     > Common > collapsable-well
@@ -13,6 +20,28 @@
       [well-body]
   Forms: 
   
+Multi field validator
+
+Create a directive
+<ul>
+  <li>import FormGroup Validator and NG_VALIDATORS </li>
+  <li>add a selector that will be use by the html element e.g div </li>
+  <li>implement validator and validate method </li>
+  <li>assign form controls to variables to </li>
+  <li>use type formGroup.root.controls 'control name' to get controls not inside the selector passed in html </li>
+  <li> valdaate controls and return null (pass) or selector name with a false value validateLocation:false </li>
+  <li>add a local variable to the ngModelGroup #locationGroup="ngModelGroup" so we have access to the return value</li>
+  <li>use the reference (locatioGroup) to to check for validation and if control has been touched</li>
+  <li>controls can also be accessed through the reference updateValueAndValidity and all its children</li>
+</ul>
+
+
+
+
+
+
+
+
   <ul>
     <li><strong>Model</strong>
       Also known as Reactive forms and allows you to put logic in the component
@@ -93,5 +122,16 @@ Pipes - In angular 1 impuire pipes were used, which isn't very efficent and can 
 
 In angular 2 it is recomended to do it in the component, and this is where the data is updated.
 The 
+
+
+<h1>RxJS</h1>
+http 
+
+promises - single value in the future
+Observables - 0 or more values in the future - sync or async
+              any value that changes over time - mouse click x or y position by map
+
+RxJS is packages seperatly > seperate http request - 200+ request to get them all - toPromise() can be used for http:// (one request)
+
 
 

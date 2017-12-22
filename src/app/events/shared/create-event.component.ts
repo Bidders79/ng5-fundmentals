@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormControl, FormGroup } from '@angular/forms'
 import { EventService } from './event.service';
+import { LocationValidator } from '../index';
 
 @Component({
     selector: 'app-create-event',   

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http'
 import { appRoutes } from './routes';
 import { EventsAppComponent } from './events-app.component';
 import { EventNavbarComponent } from './navbar/event-navbar.component';
@@ -20,7 +21,8 @@ import {
   SessionListComponent,
   DurationPipe,
   UpvoteComponent,
-  VoterService
+  VoterService,
+  LocationValidator
 } 
 from './events/index';
 
@@ -54,6 +56,7 @@ declare let jQuery : Object;
     SimpleModalComponent,
     ModalTriggerDirective,
     UpvoteComponent,
+    LocationValidator
   ],
   //modules
   imports: [
